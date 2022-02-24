@@ -1,18 +1,20 @@
 import React from 'react';
 import { Form, Input, Button,} from 'antd';
+import { firebase, auth } from '../../services/firebase/firebase';
 
 import 'antd/dist/antd.css';
 import './Login.css'
 
 function Login () {
 
+    
     const onFinish = (values) => {
         console.log('Success:', values);
-      };
-    
-      const onFinishFailed = (errorInfo) => {
+    };
+
+    const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
-      };
+    };
 
     return(
         <>
@@ -51,7 +53,7 @@ function Login () {
                         <Input.Password  className='imput-item'/>
                     </Form.Item>
                     <Form.Item>
-                        <Button className='Button-login'  type="primary" htmlType="submit">
+                        <Button  className='Button-login'  type="primary" htmlType="submit">
                             Entrar
                         </Button>
                     </Form.Item>
