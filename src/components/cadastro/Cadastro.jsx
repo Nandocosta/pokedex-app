@@ -1,21 +1,15 @@
 import React from 'react';
 import { Form, Input, Button,} from 'antd';
-import reactRouterDom from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 import './Cadastro.css'
 
-function Cadastro (){
-
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
+function Cadastro ({onFinish, onFinishFailed}){
+    
 
     return(
+        
         <>
         <div className='form-login'>
             <Form
@@ -65,7 +59,7 @@ function Cadastro (){
                 </Form.Item>
                 <Form.Item
                     label="Confirmar senha"
-                    name="senha"
+                    name="confimarSenha"
                     rules={[
                         {
                             required: true,
@@ -83,7 +77,7 @@ function Cadastro (){
             </Form>
         </div>
 
-        <a className='clique-aqui' link='/' >Já tenho uma conta? clique aqui</a>
+       <Link to='/' className='clique-aqui' >Já tenho uma conta? clique aqui</Link>
     </>
     )
 }

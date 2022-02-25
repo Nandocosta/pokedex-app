@@ -4,17 +4,9 @@ import { firebase, auth } from '../../services/firebase/firebase';
 
 import 'antd/dist/antd.css';
 import './Login.css'
+import { Link } from 'react-router-dom';
 
-function Login () {
-
-    
-    const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
+function Login ({onFinish, onFinishFailed}) {
 
     return(
         <>
@@ -59,6 +51,7 @@ function Login () {
                     </Form.Item>
                 </Form>
             </div>
+            <Link to='/cadastro' className='cadastro'>Ainda não possui uma conta? Cadastre-se</Link>
         </>
     );
 }
