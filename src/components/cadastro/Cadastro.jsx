@@ -71,7 +71,7 @@ function Cadastro ({onFinish, onFinishFailed}){
                 </Form.Item>
                 <Form.Item>
                     <Button  className='Button-login'  type="primary" htmlType="submit">
-                        Entrar
+                        Registrar
                     </Button>
                 </Form.Item>
             </Form>

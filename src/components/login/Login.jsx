@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button,} from 'antd';
-import { firebase, auth } from '../../services/firebase/firebase';
-
-import 'antd/dist/antd.css';
-import './Login.css'
 import { Link } from 'react-router-dom';
 
+import './Login.css'
+
+
+
 function Login ({onFinish, onFinishFailed}) {
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
 
     return(
         <>
@@ -29,7 +32,7 @@ function Login ({onFinish, onFinishFailed}) {
                         },
                         ]}
                     >   
-                        <Input className='imput-item' />
+                        <Input className='imput-item' onChange={ e => setEmail=(e.target.value)} value={email}/>
                     </Form.Item>
 
                     <Form.Item
@@ -42,10 +45,10 @@ function Login ({onFinish, onFinishFailed}) {
                             },
                         ]}
                     >
-                        <Input.Password  className='imput-item'/>
+                        <Input.Password  className='imput-item' onChange={ e => setSenha=(e.target.value)} value={senha}/>
                     </Form.Item>
                     <Form.Item>
-                        <Button  className='Button-login'  type="primary" htmlType="submit">
+                        <Button  className='Button-login' type="primary" htmlType="submit">
                             Entrar
                         </Button>
                     </Form.Item>
