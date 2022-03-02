@@ -47,7 +47,7 @@ function Cadastro ({onFinish, onFinishFailed}){
 
                 <Form.Item
                     label="Senha"
-                    name="senha"
+                    name="password"
                     rules={[
                         {
                             required: true,
@@ -59,11 +59,11 @@ function Cadastro ({onFinish, onFinishFailed}){
                 </Form.Item>
                 <Form.Item
                     label="Confirmar senha"
-                    name="confimarSenha"
+                    name="confimarPassword"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your password!',                    
+                            message: 'Please confirm your password!',                    
                         },
                     ]}
                 >

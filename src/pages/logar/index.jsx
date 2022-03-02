@@ -10,20 +10,18 @@ import './index.css'
 const Page = () => {
 
     const { authenticated, login } = useContext (AuthContext);
-    const [uid, setUid] = useState() 
 
-    const onFinish = (values) => {
+    
+    
+
+    const  onFinish = (values) => {
         // console.log('Success:', values);
         const auth = firebase.getAuth()
-        const uid = values.uid
-        const email = values.email
-        const password = values.password
+        const { email, password } = values
         
-        firebase.signInWithEmailAndPassword(auth, email, password).then(data => {
-        
-        // setUid(user.user.uid);
-        // // console.log(user)
-        login(uid, email, password)
+        firebase.signInWithEmailAndPassword( auth, email, password ).then( data => {
+            const { user } = data
+            login( user.uid, user.email , password )
         })
     }
 
