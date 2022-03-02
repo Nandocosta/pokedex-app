@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { Form, Input, Button,} from 'antd';
 import { Link } from 'react-router-dom';
 
+
 import './Login.css'
 
 
 
-function Login ({onFinish, onFinishFailed}) {
 
+function Login ({onFinish, onFinishFailed}) {
+    
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [password, setPassword] = useState('');
 
     return(
         <>
             <div className='form-login'>
+                
                 <Form
                     layout='vertical'
                     initialValues={{
@@ -37,7 +40,7 @@ function Login ({onFinish, onFinishFailed}) {
 
                     <Form.Item
                         label="Senha"
-                        name="senha"
+                        name="password"
                         rules={[
                             {
                                 required: true,
@@ -45,7 +48,7 @@ function Login ({onFinish, onFinishFailed}) {
                             },
                         ]}
                     >
-                        <Input.Password  className='imput-item' onChange={ e => setSenha=(e.target.value)} value={senha}/>
+                        <Input.Password  className='imput-item' onChange={ e => setPassword=(e.target.value)} value={password}/>
                     </Form.Item>
                     <Form.Item>
                         <Button  className='Button-login' type="primary" htmlType="submit">
