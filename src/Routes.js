@@ -11,6 +11,7 @@ import Home from './pages/home';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
 import Login from './components/login/Login';
 
+
 export default function Routes () {
 
     const [user, setUser] = useState('')
@@ -43,9 +44,9 @@ export default function Routes () {
                 <Switch>
                     <Route exact path='/login' component={Logar}/>
                     <Route exact path='/cadastro' component={Cadastrar}/>
-                    {/* <Route exact path='/home' component={Home}/> */}
+                    <Route exact path='/' component={Home}/>
                     <PrivateRouter
-                        path="/home"
+                        path="/"
                     >
                         <Home/>
                     </PrivateRouter>

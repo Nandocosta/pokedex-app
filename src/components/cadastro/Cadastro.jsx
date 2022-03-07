@@ -77,7 +77,7 @@ function Cadastro ({onFinish, onFinishFailed}){
             </Form>
         </div>
 
-       <Link to='/' className='clique-aqui' >Já tenho uma conta? clique aqui</Link>
+       <Link to='/login' className='clique-aqui' >Já tenho uma conta? clique aqui</Link>
     </>
     )
 }
