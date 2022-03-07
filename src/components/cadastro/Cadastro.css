@@ -1,0 +1,28 @@
+.form-login{
+    display: flex;
+    max-width: 600px;
+    height: 500px;
+    margin: 80px auto 0;
+    border: 2px solid #0001;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.imput-item{
+    width: 300px;
+    height: 32px;
+    background: rgba(10, 9, 9, 0.13);
+}
+
+.Button-login{
+    width: 130px;
+    position: absolute;
+    right: 0;
+
+}
+.clique-aqui{
+    display: inline;
+    float: right;
+    width: 44%;
+    margin-top: 10px;
+}
