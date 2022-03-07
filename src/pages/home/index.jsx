@@ -4,10 +4,15 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
+  HeartOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
+
+
 import Logo from '../../components/Logo';
+
+import './index.css'
+
 
 
 const Home = () => {
@@ -22,17 +27,17 @@ const Home = () => {
           <Layout  style={{height: '100vh',}} >
             <Sider trigger={null} collapsible collapsed={collapse} >
               <div className="logo" >
-                  <Logo src={'../images/pokeapi.png'}/>
+                  <Logo src={Logo}/>
             </div>
               <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                <Menu.Item key="1" icon={<UserOutlined />}>
-                  nav 1
+              <Menu.Item key="1" icon={<HomeOutlined />}>
+                  Pokemons
                 </Menu.Item>
-                <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                  nav 2
+                <Menu.Item key="2" icon={<HeartOutlined />}>
+                  PokeLikes
                 </Menu.Item>
-                <Menu.Item key="3" icon={<UploadOutlined />}>
-                  nav 3
+                <Menu.Item key="3" icon={<UserOutlined />}>
+                  Minha Conta
                 </Menu.Item>
               </Menu>
             </Sider>
