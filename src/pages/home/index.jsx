@@ -10,6 +10,7 @@ import {
 
 
 import Logo from '../../components/Logo';
+import imagem from '../../images/pokeapi.png'
 
 import './index.css'
 
@@ -27,7 +28,7 @@ const Home = () => {
           <Layout  style={{height: '100vh',}} >
             <Sider trigger={null} collapsible collapsed={collapse} >
               <div className="logo" >
-                  <Logo src={Logo}/>
+                  <Logo src={imagem}/>
             </div>
               <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
               <Menu.Item key="1" icon={<HomeOutlined />}>
