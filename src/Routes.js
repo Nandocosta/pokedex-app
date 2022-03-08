@@ -10,6 +10,9 @@ import { AuthContext } from './contexts/auth';
 import Home from './pages/home';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
 import Login from './components/login/Login';
+import PokerLikes from './pages/PokerLikes';
+import MinhaConta from './pages/MinhaConta';
+
 
 
 export default function Routes () {
@@ -45,10 +48,14 @@ export default function Routes () {
                     <Route exact path='/login' component={Logar}/>
                     <Route exact path='/cadastro' component={Cadastrar}/>
                     <Route exact path='/' component={Home}/>
+                    <Route exact path='/PokerLikes' component={PokerLikes}/>
+                    <Route exact path='/MinhaConta' component={MinhaConta}/>
                     <PrivateRouter
                         path="/"
                     >
                         <Home/>
+                        <PokerLikes/>
+                        <MinhaConta/>
                     </PrivateRouter>
                     <Route path='/unauthenticated' component={Unauthenticated}/>
                 </Switch>
