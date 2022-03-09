@@ -15,33 +15,33 @@ import Logo from '../Logo/index';
 import imagem from '../../images/pokeapi.png'
 
 import './index.css'
-import CardPokemon from '../CardPokemon';
 
 
 
-const PainelPoker = () => {
+
+const PainelPoker = ({children}) => {
 
     const { Header, Sider, Content } = Layout;
 
     const [collapse, setCollape] = useState(false)
     
     const toggle = () => setCollape(!collapse);
-
+    
         return (
-          <Layout  style={{height: '100vh',}} >
-            <Sider trigger={null} collapsible collapsed={collapse} >
+          <Layout style={{height: '100vh' ,}} >
+            <Sider style={{background: '#0877BB'}} trigger={null} collapsible collapsed={collapse} >
               <div className="logo" >
                   <Logo src={imagem}/>
             </div>
-              <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-              <Menu.Item key="1" icon={<HomeOutlined />}>
+              <Menu style={{background: 'inherit'}} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                <Menu.Item key="1" icon={<HomeOutlined />}>
                   
-                  <Link to="/home">Pokemons</Link>
+                  <Link to="/home" >Pokemons</Link>
 
                 </Menu.Item>
                 <Menu.Item key="2" icon={<HeartOutlined />}>
                   
-                  <Link to="/PokerLikes">PokeLikes</Link>
+                  <Link to="/PokerLikes" >PokeLikes</Link>
 
                 </Menu.Item>
                 <Menu.Item key="3" icon={<UserOutlined />}>
@@ -51,10 +51,10 @@ const PainelPoker = () => {
                 </Menu.Item>
               </Menu>
             </Sider>
-            <Layout className="site-layout">
-              <Header className="site-layout-background" style={{ padding: 0 }}>
-                {React.createElement(collapse? MenuUnfoldOutlined : MenuFoldOutlined, {
-                  className: 'trigger',
+            <Layout className="site-layout" >
+              <Header className="site-layout-background" style={{ padding: 0 , background: '#0877BB'}}>
+                {React.createElement(collapse ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                className: 'trigger',
                   onClick: toggle,
                 })}
               </Header>
@@ -66,7 +66,7 @@ const PainelPoker = () => {
                   minHeight: 280,
                 }}
               >
-               <CardPokemon/>
+               {children}
               </Content>
             </Layout>
           </Layout>

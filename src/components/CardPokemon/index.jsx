@@ -3,32 +3,38 @@ import { Card } from 'antd';
 
 import { HeartOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
+// import axios from "axios";
+// import { async } from "@firebase/util";
+import './index.css'
 
-import Api from "../../Services"
+
 
 const CardPokemon = () => {
+// useEffect (() => {
 
-    const {pokemon, setPokemon} = useState("")
-    const {pokemonName, setPokemonName} = useState("")
-    const {pokemonType, setPokemonType} = useState("")
-
-    useEffect(() => {
-        Api.get("/Pokemons")
-        .then((response) => setPokemon(response.data))
-        .catch((e) =>{
-            console.logo(e)
-        })
-    }, [])
+//     const fetchPokemon = async () => {
     
+//         const response = await axios.get(
+//             'https://pokeapi.co/api/v2/pokemon/ditto'
+//         );
+//         console.log(response);
+//     }
+
+// }, [])
+    const [buscar, setBusca] = useState()
+
     return (
-        <div CardPoker>
-            <Card size="small" 
+
+        <div >
+            <Card className ='card-poke' size="small" 
             title="Small size card" 
             extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>} 
-            style={{ width: 300 }}>
-               
-                <p>Card content</p>
-
+            style={{background: 'pink'}}>
+                <div>
+                    {buscar}
+                </div>
+                
+                <button onClick={() => setBusca()}>pokemon</button>
             </Card>
         </div>
     )
