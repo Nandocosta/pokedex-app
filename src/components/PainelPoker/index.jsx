@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Card} from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -8,6 +8,7 @@ import {
   HeartOutlined,
   HomeOutlined,
 } from '@ant-design/icons';
+import axios from "axios";
 
 
 
@@ -15,8 +16,9 @@ import Logo from '../Logo/index';
 import imagem from '../../images/pokeapi.png'
 
 import './index.css'
-
-
+import Search from '../Search/index';
+import CardPokemon from '../CardPokemon';
+import ListCardPokemon from '../ListCardPokemon';
 
 
 const PainelPoker = ({children}) => {
@@ -26,7 +28,46 @@ const PainelPoker = ({children}) => {
     const [collapse, setCollape] = useState(false)
     
     const toggle = () => setCollape(!collapse);
+
+  //   const [pokemon, setPokemon] = useState('pikachu')
+  //   const [pokemonData, setPokemonData] = useState([])
+  //   const [pokemonType, setPokemonType] = useState('')
     
+
+  //   useEffect( () => {
+  //       pokeApi(setPokemon);
+  //   }, []);
+
+  //   const pokeApi = async () =>{
+  //     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon ?? ''}`)
+  //     const convert = await data.json();
+  //     setPokemon(convert)
+  //   }
+
+  //   const handleChange = (e) => {
+  //     setPokemon(e.target.value.toLowerCase())
+  // }
+    const [pokemon, setPokemon] = useState('')
+    const [pokemonData, setPokemonData] = useState([])
+
+    useEffect(() => {
+      getPokemon()
+    }, [])
+
+    const getPokemon = async () => {
+      const toArray = []
+      try{
+          const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+          const res = await axios.get(url);
+          toArray.push(res.data)
+          setPokemonData(toArray)
+          // console.log(res)
+      }catch(e){
+          // console.log(e);
+      }
+    }
+
+ 
         return (
           <Layout style={{height: '100vh' ,}} >
             <Sider style={{background: '#0877BB'}} trigger={null} collapsible collapsed={collapse} >
@@ -66,7 +107,12 @@ const PainelPoker = ({children}) => {
                   minHeight: 280,
                 }}
               >
-               {children}
+                <Search setPokemon={setPokemon} getPokemon={getPokemon} />
+                <ListCardPokemon pokemonData={pokemonData} />
+                {/* {pokemonData.map(data => {
+                  <CardPokemon pokemonData={data} />
+                })} */}
+                     
               </Content>
             </Layout>
           </Layout>
