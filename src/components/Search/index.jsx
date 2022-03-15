@@ -13,7 +13,7 @@ const Search= ({setPokemon, getPokemon}) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        getPokemon();
+        getPokemon()
     }
 
     return(

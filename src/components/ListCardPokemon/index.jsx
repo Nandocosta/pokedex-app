@@ -4,18 +4,17 @@ import CardPokemon from '../CardPokemon';
 import './index.css'
 
 const ListCardPokemon = ({pokemonData}) => {
-    // console.log(pokemonData[0]?.results)
-    
+
     const data = pokemonData
-    console.log(data)
+
     const list = data[0]?.results || []
     
     
-    return list.map(data => {
-        // console.log(list)
+    return list.map(pokemon => {
+
         return (
             <div className='listCard'>
-                <CardPokemon data={data} /> 
+                <CardPokemon pokemon={pokemon}/> 
             </div>
         )
         

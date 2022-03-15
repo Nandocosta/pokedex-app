@@ -11,8 +11,6 @@ const PokeLikes = () => {
 
     return(
         <PainelPoker/>
-        //     <CardPokemon />
-        // </PainelPoker>
     );
 }
 export default PokeLikes;

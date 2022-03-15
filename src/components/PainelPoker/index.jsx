@@ -23,35 +23,15 @@ import ListCardPokemon from '../ListCardPokemon';
 
 const PainelPoker = ({children}) => {
 
-    const { Header, Sider, Content } = Layout;
-
-    const [collapse, setCollape] = useState(false)
+  const [collapse, setCollape] = useState(false)
+  const [pokemon, setPokemon] = useState('')
+  const [pokemonData, setPokemonData] = useState([])
+  
+  const toggle = () => setCollape(!collapse);
+  const { Header, Sider, Content } = Layout;
     
-    const toggle = () => setCollape(!collapse);
-
-  //   const [pokemon, setPokemon] = useState('pikachu')
-  //   const [pokemonData, setPokemonData] = useState([])
-  //   const [pokemonType, setPokemonType] = useState('')
-    
-
-  //   useEffect( () => {
-  //       pokeApi(setPokemon);
-  //   }, []);
-
-  //   const pokeApi = async () =>{
-  //     const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon ?? ''}`)
-  //     const convert = await data.json();
-  //     setPokemon(convert)
-  //   }
-
-  //   const handleChange = (e) => {
-  //     setPokemon(e.target.value.toLowerCase())
-  // }
-    const [pokemon, setPokemon] = useState('')
-    const [pokemonData, setPokemonData] = useState([])
-
-    useEffect(() => {
-      getPokemon()
+     useEffect(() => {
+        getPokemon()
     }, [])
 
     const getPokemon = async () => {
@@ -61,7 +41,6 @@ const PainelPoker = ({children}) => {
           const res = await axios.get(url);
           toArray.push(res.data)
           setPokemonData(toArray)
-          // console.log(res)
       }catch(e){
           // console.log(e);
       }
@@ -102,17 +81,19 @@ const PainelPoker = ({children}) => {
               <Content
                 className="site-layout-background"
                 style={{
-                  margin: '24px 16px',
+                  margin: '24px 100px',
                   padding: 24,
                   minHeight: 280,
                 }}
               >
-                <Search setPokemon={setPokemon} getPokemon={getPokemon} />
-                <ListCardPokemon pokemonData={pokemonData} />
-                {/* {pokemonData.map(data => {
-                  <CardPokemon pokemonData={data} />
-                })} */}
-                     
+                <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
+                <div >
+                  <ListCardPokemon pokemonData={pokemonData} />
+                  {/* {pokemonData.map(data => {
+                    <CardPokemon pokemonData={data} />
+                  })} */}
+                      
+                </div>
               </Content>
             </Layout>
           </Layout>

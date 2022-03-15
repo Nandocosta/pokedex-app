@@ -7,7 +7,7 @@ import PainelPoker from '../../components/PainelPoker';
 const Home = () => {
 
     return (
-      <div>
+      <div to >
         <PainelPoker/>
       </div>
     );
