@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, version } from "react";
 import axios from "axios";
 import { Card} from 'antd';
 
@@ -10,7 +10,6 @@ import './index.css'
 const CardPokemon = ( {pokemon}) => {
 
     const [pokemonData, setPokemonData] = useState()
-
     useEffect(() => {
         getPokemon(pokemon.name)
     },[])
@@ -21,7 +20,7 @@ const CardPokemon = ( {pokemon}) => {
             const res = await axios.get(url);
             setPokemonData(res.data)
         }catch(e){
-            console.log(e)
+            // console.log(e)
 
         }
       }
@@ -29,18 +28,30 @@ const CardPokemon = ( {pokemon}) => {
     return (
         <div>
             <Card className ='card-poke' size="small" 
-            title="Small size card" 
+            title={`EXP ${pokemonData?.base_experience}`}
             extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>} 
-            style={{background: 'pink'}}>
+            style={{background: 'white'}}>
                 <div>
                     <img style={{width: '250px'}} src={pokemonData?.sprites['front_default']}/>
                     <div>
-                        <h1>Tipo</h1>
-                        {console.log(pokemonData)}
-                    </div>
-                    <div>
-                        <h1>Height</h1>
-                        {''}{Math.round(pokemonData?.height * 3.9)}
+                        <span>
+                            <h4>Nome: {pokemonData?.name}</h4>
+                            {console.log(pokemonData)}
+                            
+                        </span>
+                        <span>
+                            <h5>Tipo: 
+                                {pokemonData?.types.map((pokemonType) => {
+                                    return(
+                                        <span> {pokemonType?.type?.name}</span>
+                                    )
+                                })}
+                            </h5>
+                        </span>
+                        <span>
+                            <h5>Height: {''}{Math.round(pokemonData?.height * 3.9)}</h5>
+                            
+                        </span>
                     </div>
 
                 </div> 

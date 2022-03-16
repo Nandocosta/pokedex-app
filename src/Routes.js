@@ -54,8 +54,6 @@ export default function Routes () {
                         path="/"
                     >
                         <Home/>
-                        <PokerLikes/>
-                        <MinhaConta/>
                     </PrivateRouter>
                     <Route path='/unauthenticated' component={Unauthenticated}/>
                 </Switch>
