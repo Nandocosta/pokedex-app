@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, Route} from 'react-router-dom'
 
-
 const PrivateRouter = ({children, ...rest}) => {
 
     const userStorage = JSON.parse(localStorage.getItem("Usuario"))

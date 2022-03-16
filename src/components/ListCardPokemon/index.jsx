@@ -9,7 +9,6 @@ const ListCardPokemon = ({pokemonData}) => {
 
     const list = data[0]?.results || []
     
-    
     return list.map(pokemon => {
 
         return (

@@ -9,7 +9,7 @@ import Unauthenticated from './pages/Unauthenticated';
 import { AuthContext } from './contexts/auth';
 import Home from './pages/home';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
-import Login from './components/login/Login';
+
 import PokerLikes from './pages/PokerLikes';
 import MinhaConta from './pages/MinhaConta';
 

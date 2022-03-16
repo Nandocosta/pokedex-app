@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Card } from 'antd';
+import { Card} from 'antd';
 
 import { HeartOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
 import './index.css'
 
-
-
 const CardPokemon = ( {pokemon}) => {
 
     const [pokemonData, setPokemonData] = useState()
-
 
     useEffect(() => {
         getPokemon(pokemon.name)
@@ -24,7 +21,8 @@ const CardPokemon = ( {pokemon}) => {
             const res = await axios.get(url);
             setPokemonData(res.data)
         }catch(e){
-            // console.log(e);
+            console.log(e)
+
         }
       }
 
@@ -35,12 +33,10 @@ const CardPokemon = ( {pokemon}) => {
             extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>} 
             style={{background: 'pink'}}>
                 <div>
-                    <img style={{width: '250px'}} src={pokemonData?.sprites && pokemonData?.sprites['front_default']}/>
+                    <img style={{width: '250px'}} src={pokemonData?.sprites['front_default']}/>
                     <div>
                         <h1>Tipo</h1>
                         {console.log(pokemonData)}
-                        
-                        
                     </div>
                     <div>
                         <h1>Height</h1>

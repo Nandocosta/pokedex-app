@@ -11,8 +11,6 @@ const Logar = () => {
 
     const { authenticated, login } = useContext (AuthContext);
 
-    
-    
 
     const  onFinish = (values) => {
         // console.log('Success:', values);

@@ -11,7 +11,6 @@ import PainelPoker from "../../components/PainelPoker";
 
 import './index.css'
 
-
 const MinhaConta = ({onFinish,onFinishFailed}) => {
 
     const style = { background: '#0092ff', padding: '8px 0' };
