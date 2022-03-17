@@ -17,7 +17,7 @@ import ListCardPokemon from '../ListCardPokemon';
 
 import './index.css'
 
-const PainelPoker = ({children}) => {
+const PainelPoker = ({children, favorites=false}) => {
 
   const [collapse, setCollape] = useState(false)
   const [pokemon, setPokemon] = useState('')
@@ -83,7 +83,7 @@ const PainelPoker = ({children}) => {
         >
           <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
           <div >
-            <ListCardPokemon pokemonData={pokemonData} />
+            <ListCardPokemon favorites={favorites} pokemonData={pokemonData}  />
           </div>
         </Content>
       </Layout>

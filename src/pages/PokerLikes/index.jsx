@@ -5,7 +5,7 @@ import PainelPoker from "../../components/PainelPoker";
 const PokeLikes = () => {
 
     return(
-        <PainelPoker/>
+        <PainelPoker favorites/>
     );
 }
 export default PokeLikes;

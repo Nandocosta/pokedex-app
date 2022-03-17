@@ -33,28 +33,25 @@ const CardPokemon = ( {pokemon}) => {
             title={`EXP ${pokemonData?.base_experience}`}
             extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>}
             className={`card-poke ${pokemonData?.types[0]?.type?.name}`}>
+                <img style={{width: '180px'}} src={pokemonData?.sprites['front_default']}/>
                 <div>
-                    <img style={{width: '250px'}} src={pokemonData?.sprites['front_default']}/>
-                    <div>
-                        <span>
-                            <h4>Nome: {pokemonData?.name}</h4>
-                        </span>
-                        <span>
-                            <h5>Tipo: 
-                                {pokemonData?.types.map((pokemonType) => {
-                                    return(
-                                        <span> {pokemonType?.type?.name}</span>
-                                    )
-                                })}
-                            </h5>
-                        </span>
-                        <span>
-                            <h5>Height: {''}{Math.round(pokemonData?.height * 3.9)}</h5>
-                            
-                        </span>
-                    </div>
-
-                </div> 
+                    <span>
+                        <h4>Nome: {pokemonData?.name}</h4>
+                    </span>
+                    <span>
+                        <h5>Tipo: 
+                            {pokemonData?.types.map((pokemonType) => {
+                                return(
+                                    <span> {pokemonType?.type?.name}</span>
+                                )
+                            })}
+                        </h5>
+                    </span>
+                    <span>
+                        <h5>Height: {''}{Math.round(pokemonData?.height * 3.9)}</h5>
+                        
+                    </span>
+                </div>
             </Card>
         </div>
     )
