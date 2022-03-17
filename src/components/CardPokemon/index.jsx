@@ -9,7 +9,12 @@ import './index.css'
 
 const CardPokemon = ( {pokemon}) => {
 
+    
     const [pokemonData, setPokemonData] = useState()
+    // const [itensPerPage, setItensForPage] = useState [6]
+    // const [currentPage, setCurrentPage] = useState [0]
+
+    // const pages = Math.ceil(pokemon.length / itensPerPage)
     
     useEffect(() => {
         getPokemon(pokemon.name)
@@ -21,7 +26,6 @@ const CardPokemon = ( {pokemon}) => {
             const res = await axios.get(url);
             const { data } = res
             setPokemonData(data)
-            
         }catch(e){
             console.log(e)
         }
@@ -35,6 +39,7 @@ const CardPokemon = ( {pokemon}) => {
             className={`card-poke ${pokemonData?.types[0]?.type?.name}`}>
                 <img style={{width: '180px'}} src={pokemonData?.sprites['front_default']}/>
                 <div>
+                    {/* <div>{pages}</div> */}
                     <span>
                         <h4>Nome: {pokemonData?.name}</h4>
                     </span>

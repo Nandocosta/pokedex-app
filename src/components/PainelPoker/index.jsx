@@ -17,7 +17,7 @@ import ListCardPokemon from '../ListCardPokemon';
 
 import './index.css'
 
-const PainelPoker = ({children, favorites=false}) => {
+const PainelPoker = ({children, favorites = false, telaSelected}) => {
 
   const [collapse, setCollape] = useState(false)
   const [pokemon, setPokemon] = useState('')
@@ -41,6 +41,11 @@ const PainelPoker = ({children, favorites=false}) => {
         // console.log(e);
     }
   }
+  const enumSelecteds = {
+    pokemons: "1",
+    PokeLikes: "2",
+    MinhaConta: "3",
+  }
 
   return (
     <Layout style={{height: '100vh' ,}} >
@@ -48,7 +53,7 @@ const PainelPoker = ({children, favorites=false}) => {
         <div className="logo" >
             <Logo src={imagem}/>
       </div>
-        <Menu style={{background: 'inherit'}} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu style={{background: 'inherit'}} theme="dark" mode="inline" defaultSelectedKeys={[enumSelecteds[telaSelected]]}>
           <Menu.Item key="1" icon={<HomeOutlined />}>
             
             <Link to="/home" >Pokemons</Link>
@@ -81,10 +86,11 @@ const PainelPoker = ({children, favorites=false}) => {
             minHeight: 280,
           }}
         >
-          <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
+          {children}
+          {/* <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
           <div >
             <ListCardPokemon favorites={favorites} pokemonData={pokemonData}  />
-          </div>
+          </div> */}
         </Content>
       </Layout>
     </Layout>

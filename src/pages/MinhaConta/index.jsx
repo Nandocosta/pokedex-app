@@ -16,7 +16,7 @@ const MinhaConta = ({onFinish,onFinishFailed}) => {
     const style = { background: '#0092ff', padding: '8px 0' };
 
     return(
-        <PainelPoker>
+        <PainelPoker telaSelected={'MinhaConta'}>
             <div>
                 <h1>Minha Conta</h1>
             </div>
