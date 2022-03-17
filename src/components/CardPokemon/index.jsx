@@ -1,4 +1,4 @@
-import React, { useEffect, useState, version } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import { Card} from 'antd';
 
@@ -10,34 +10,34 @@ import './index.css'
 const CardPokemon = ( {pokemon}) => {
 
     const [pokemonData, setPokemonData] = useState()
+    
     useEffect(() => {
         getPokemon(pokemon.name)
     },[])
-      
+
     const getPokemon = async (poke) => {
         try{
             const url = `https://pokeapi.co/api/v2/pokemon/${poke}`
             const res = await axios.get(url);
-            setPokemonData(res.data)
+            const { data } = res
+            setPokemonData(data)
+            
         }catch(e){
-            // console.log(e)
-
+            console.log(e)
         }
       }
-
+       
     return (
         <div>
-            <Card className ='card-poke' size="small" 
+            <Card size="small" 
             title={`EXP ${pokemonData?.base_experience}`}
-            extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>} 
-            style={{background: 'white'}}>
+            extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>}
+            className={`card-poke ${pokemonData?.types[0]?.type?.name}`}>
                 <div>
                     <img style={{width: '250px'}} src={pokemonData?.sprites['front_default']}/>
                     <div>
                         <span>
                             <h4>Nome: {pokemonData?.name}</h4>
-                            {console.log(pokemonData)}
-                            
                         </span>
                         <span>
                             <h5>Tipo: 
