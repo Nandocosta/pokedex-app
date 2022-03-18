@@ -18,7 +18,7 @@ const Search = ({setPokemon, getPokemon}) => {
             <div className='seach-container'>
                     <input className='input-search' type="text" name='search' onChange={handleChange}/>
                 <div>
-                    <button className='input-searh-button' onClick = {handleSubmit} ><FaSearch /></button>
+                    <button className='input-searh-button' onClick={handleSubmit} ><FaSearch /></button>
                 </div>
             </div>
         </div>

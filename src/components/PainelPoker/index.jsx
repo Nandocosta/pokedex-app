@@ -20,27 +20,27 @@ import './index.css'
 const PainelPoker = ({children, favorites = false, telaSelected}) => {
 
   const [collapse, setCollape] = useState(false)
-  const [pokemon, setPokemon] = useState('')
-  const [pokemonData, setPokemonData] = useState([])
+  // const [pokemon, setPokemon] = useState('')
+  // const [pokemonData, setPokemonData] = useState([])
   
   const toggle = () => setCollape(!collapse);
   const { Header, Sider, Content } = Layout;
     
-  useEffect(() => {
-    getPokemon()
-  }, [])
+  // useEffect(() => {
+  //   getPokemon()
+  // }, [])
 
-  const getPokemon = async () => {
-    const toArray = []
-    try{
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-        const res = await axios.get(url);
-        toArray.push(res.data)
-        setPokemonData(toArray)
-    }catch(e){
-        // console.log(e);
-    }
-  }
+  // const getPokemon = async () => {
+  //   const toArray = []
+  //   try{
+  //       const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+  //       const res = await axios.get(url);
+  //       toArray.push(res.data)
+  //       setPokemonData(toArray)
+  //   }catch(e){
+  //       // console.log(e);
+  //   }
+  // }
   const enumSelecteds = {
     pokemons: "1",
     PokeLikes: "2",

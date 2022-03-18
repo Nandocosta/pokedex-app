@@ -8,7 +8,6 @@ const PokeLikes = () => {
     return(
         <PainelPoker telaSelected={'PokeLikes'} favorites>
             <Search/>
-            
         </PainelPoker>
     );
 }

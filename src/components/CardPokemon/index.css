@@ -1,6 +1,14 @@
 .card-poke{
     width: 250px;
+    height: 310px;
     border-radius: 10px;
+}
+.card-poke-img img{
+    width: 150px;
+    height: 100px;
+}
+.info-card-poke{
+    margin-top: 25px;
 }
 
 /* Colors of the Pokemon */
