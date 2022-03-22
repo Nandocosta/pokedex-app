@@ -25,22 +25,7 @@ const PainelPoker = ({children, favorites = false, telaSelected}) => {
   
   const toggle = () => setCollape(!collapse);
   const { Header, Sider, Content } = Layout;
-    
-  // useEffect(() => {
-  //   getPokemon()
-  // }, [])
 
-  // const getPokemon = async () => {
-  //   const toArray = []
-  //   try{
-  //       const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-  //       const res = await axios.get(url);
-  //       toArray.push(res.data)
-  //       setPokemonData(toArray)
-  //   }catch(e){
-  //       // console.log(e);
-  //   }
-  // }
   const enumSelecteds = {
     pokemons: "1",
     PokeLikes: "2",
@@ -87,10 +72,7 @@ const PainelPoker = ({children, favorites = false, telaSelected}) => {
           }}
         >
           {children}
-          {/* <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
-          <div >
-            <ListCardPokemon favorites={favorites} pokemonData={pokemonData}  />
-          </div> */}
+
         </Content>
       </Layout>
     </Layout>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Search from '../../components/Search/index';
 import ListCardPokemon from '../../components/ListCardPokemon';
 import PainelPoker from '../../components/PainelPoker';
+import { Pagination } from '../../components/Pagination';
 
 const Home = () => {
     const [pokemon, setPokemon] = useState('')
@@ -26,10 +27,9 @@ const Home = () => {
 
     return (
         <PainelPoker telaSelected={"pokemons"}>
-           <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
-            <div >
-                <ListCardPokemon pokemonData={pokemonData}  />
-            </div>
+            <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
+            <ListCardPokemon pokemonData={pokemonData}  />
+            <Pagination/>
         </PainelPoker>
     );
 }; 
