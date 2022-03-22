@@ -71,7 +71,7 @@ const PainelPoker = ({children, favorites = false, telaSelected}) => {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout className="site-layout" >
+      <Layout className="site-layout" style={{overflow: 'scroll'}}>
         <Header className="site-layout-background" style={{padding: 0, background: '#0877BB'}}>
           {React.createElement(collapse ? MenuUnfoldOutlined : MenuFoldOutlined, {
           className: 'trigger',

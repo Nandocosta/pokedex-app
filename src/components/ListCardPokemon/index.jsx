@@ -10,6 +10,7 @@ const ListCardPokemon = ({pokemonData, favorites}) => {
     const [itens, setItens] = useState('')
     const [itensPerPage, setItensPerPage] = useState(6)
     const [currentPage, setCurrentPage] = useState(0)
+
     const pageList = Math.ceil(itens.length / itensPerPage)
 
     // console.log(pages)
@@ -19,7 +20,8 @@ const ListCardPokemon = ({pokemonData, favorites}) => {
     const listFavorites = [] 
 
     const renderList = (param) => {
-        const pageList = param.slice(6, 12)
+        const pageList = param.slice( 6, 12)
+
         return pageList.map(pokemon => {
             return (
                 <div className='listCard'>
