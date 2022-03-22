@@ -6,17 +6,20 @@ import PainelPoker from '../../components/PainelPoker';
 import { Pagination } from '../../components/Pagination';
 
 const Home = () => {
-    const [pokemon, setPokemon] = useState('')
+    const [pokemon, setPokemon] = useState('?offset=0&limit=6')
     const [pokemonData, setPokemonData] = useState([])
     
     useEffect(() => {
         getPokemon()
     }, [])
     
-    const getPokemon = async () => {
+    const getPokemon = async (offset) => {
     const toArray = []
     try{
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+        const offsetDefault = "?offset=0&limit=6"
+        const queryParam = offset || ""
+        console.log(queryParam)
+        const url = `https://pokeapi.co/api/v2/pokemon/${queryParam}`
         const res = await axios.get(url);
         toArray.push(res.data)
         setPokemonData(toArray)
@@ -28,7 +31,7 @@ const Home = () => {
     return (
         <PainelPoker telaSelected={"pokemons"}>
             <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
-            <ListCardPokemon pokemonData={pokemonData}  />
+            <ListCardPokemon pokemonData={pokemonData} getPokemon={ getPokemon} />
             <Pagination/>
         </PainelPoker>
     );
