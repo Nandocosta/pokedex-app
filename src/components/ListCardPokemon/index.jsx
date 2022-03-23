@@ -1,9 +1,4 @@
-import { wait } from '@testing-library/user-event/dist/utils';
-import { Button } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
-import Item from 'antd/lib/list/Item';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import CardPokemon from '../CardPokemon';
 import './index.css'
@@ -14,8 +9,8 @@ const ListCardPokemon = ({pokemonData, favorites, getPokemon}) => {
     const [currentPage, setCurrentPage] = useState(0)
 
     const data = pokemonData
-    const list = data[0]?.results || []
-    const listFavorites = [] 
+    const list = favorites ? pokemonData : data[0]?.results || []
+    const listFavorites = pokemonData
 
     const pagination = (offset) => {
         getPokemon(`?offset=${offset}&limit=6`)
@@ -44,7 +39,7 @@ const ListCardPokemon = ({pokemonData, favorites, getPokemon}) => {
         ) 
     }
 
-    return favorites ? RenderList(listFavorites) : RenderList(list)
+    return RenderList(list)
     
    
 }

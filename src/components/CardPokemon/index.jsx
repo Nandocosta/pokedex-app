@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
 import { Card} from 'antd';
-
-import { HeartOutlined } from '@ant-design/icons';
+import { addPokemon, getPokemonsFavorites,removePokemon } from '../../Services/servicesPokelikes'
+import { HeartOutlined,HeartFilled } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
 import './index.css'
@@ -10,10 +10,11 @@ import './index.css'
 const CardPokemon = ( {pokemon}) => {
 
     const [pokemonData, setPokemonData] = useState()
+    const [isFavority, setisFavority]  = useState()
     
     useEffect(() => {
         getPokemon(pokemon.name)
-    },[])
+    },[isFavority])
 
     const getPokemon = async (poke) => {
         try{
@@ -26,12 +27,26 @@ const CardPokemon = ( {pokemon}) => {
             console.log(e)
         }
       }
+
+    const favoritar = (pokemon) => {
+        addPokemon(pokemon.id)
+        setisFavority(true)
+    }
+    const desfavoritar = (pokemon) => {
+        removePokemon(pokemon.id)
+        setisFavority(false)
+    }
+
        
     return (
         <div>
             <Card size="small" 
             title={`EXP ${pokemonData?.base_experience}`}
-            extra={<Link to = "/PokerLikes"><HeartOutlined/></Link>}
+            extra={
+                getPokemonsFavorites(pokemonData?.id) ?
+                <HeartFilled color="red" onClick={() => desfavoritar(pokemonData)}/> :
+                <HeartOutlined color="red"  onClick={() => favoritar(pokemonData)}/> 
+            }
             className={`card-poke ${pokemonData?.types[0]?.type?.name}`}>
                 <div className="card-poke-img">
                     <img src={pokemonData?.sprites?.other?.dream_world['front_default']}/>
