@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CardPokemon from '../CardPokemon';
 import './index.css'
@@ -8,9 +8,12 @@ const ListCardPokemon = ({pokemonData, favorites, getPokemon}) => {
     const [itensPerPage, setItensPerPage] = useState(6)
     const [currentPage, setCurrentPage] = useState(0)
 
-    const data = pokemonData
-    const list = favorites ? pokemonData : data[0]?.results || []
-    const listFavorites = pokemonData
+    
+        const data = pokemonData
+        const list = data[0]?.results || []
+        const listFavorites = pokemonData || []
+
+        console.log(list)
 
     const pagination = (offset) => {
         getPokemon(`?offset=${offset}&limit=6`)
@@ -23,15 +26,15 @@ const ListCardPokemon = ({pokemonData, favorites, getPokemon}) => {
             <>
                 {
                     param.map(pokemon => {
+                        
                         return (
-                            <div className='listCard'>
-                                <CardPokemon pokemon={pokemon}/> 
-                            </div>
+                            
+                            <CardPokemon favorites={favorites} pokemon={pokemon}/> 
                         )
                     })
                 }
                 <div>
-                    {Array.from(Array(pages), (_, index) => {
+                    { !favorites && Array.from(Array(pages), (_, index) => {
                         return <button onClick={() => pagination(index)}>{index}</button>
                     })}
                 </div>

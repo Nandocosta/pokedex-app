@@ -19,7 +19,7 @@ const Home = () => {
         const offsetDefault = "?offset=0&limit=6"
         const queryParam = offset || ""
         console.log(queryParam)
-        const url = `https://pokeapi.co/api/v2/pokemon/${queryParam}`
+        const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1100${queryParam}`
         const res = await axios.get(url);
         toArray.push(res.data)
         setPokemonData(toArray)

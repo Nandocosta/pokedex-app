@@ -6,6 +6,7 @@ import { AuthContext } from '../../contexts/auth';
 import Login from '../../components/login/Login';
 
 import './index.css'
+import Home from '../home';
 
 const Logar = () => {
 
@@ -29,7 +30,7 @@ const Logar = () => {
 
     return (
         <div>
-            <p>{String(authenticated)}</p>
+            authenticated ? <Home/> : <Logar/>
             <Login onFinish={onFinish} onFinishFailed={onFinishFailed}/>
         </div>
     );

@@ -7,10 +7,9 @@ import axios from "axios";
 import ListCardPokemon from "../../components/ListCardPokemon";
 
 const PokeLikes = () => {
+        const [pokemon, setPokemon] = useState('?offset=0&limit=6')
+        const [pokemonData, setPokemonData] = useState([])
 
-    const [pokemon, setPokemon] = useState('?offset=0&limit=6')
-    const [pokemonData, setPokemonData] = useState([])
-    
     useEffect(() => {
         getPokemon()
     }, [])
@@ -20,18 +19,11 @@ const PokeLikes = () => {
     try{
         const offsetDefault = "?offset=0&limit=6"
         const queryParam = offset || ""
-        const url = `https://pokeapi.co/api/v2/pokemon/${queryParam}`
+        console.log(queryParam)
+        const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1100${queryParam}`
         const res = await axios.get(url);
         toArray.push(res.data)
-        const listStored = getPokemonsFavorites()
-        const pokeLikesFavorites = toArray && toArray[0]?.results?.filter( async (e) => {
-            const urlPokemon = `https://pokeapi.co/api/v2/pokemon/${e.name}`
-            const resPokemon = await axios.get(urlPokemon);
-            const currentpokemon = resPokemon?.data 
-            return listStored.includes(currentpokemon.id)
-        })
-        console.log(pokeLikesFavorites)
-        setPokemonData(pokeLikesFavorites)
+        setPokemonData(toArray)
     }catch(e){
         // console.log(e);
     }
@@ -39,7 +31,7 @@ const PokeLikes = () => {
 
     return(
         <PainelPoker telaSelected={'PokeLikes'}  >
-            <Search/>
+            <Search setPokemon={setPokemon} getPokemon={getPokemon}/>
             <ListCardPokemon pokemonData={pokemonData} favorites = {true}/>
         </PainelPoker>
     );
