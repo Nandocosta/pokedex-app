@@ -34,14 +34,14 @@ const PainelPoker = ({children, favorites = false, telaSelected}) => {
 
   return (
     <Layout style={{height: '100vh' ,}} >
-      <Sider style={{background: '#0877BB'}} trigger={null} collapsible collapsed={collapse} >
+      <Sider style={{background: '#0877BB'}} >
         <div className="logo" >
             <Logo src={imagem}/>
-      </div>
+        </div>
         <Menu style={{background: 'inherit'}} theme="dark" mode="inline" defaultSelectedKeys={[enumSelecteds[telaSelected]]}>
           <Menu.Item key="1" icon={<HomeOutlined />}>
             
-            <Link to="/home" >Pokemons</Link>
+            <Link to="/" >Pokemons</Link>
 
           </Menu.Item>
           <Menu.Item key="2" icon={<HeartOutlined />}>
@@ -57,12 +57,6 @@ const PainelPoker = ({children, favorites = false, telaSelected}) => {
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{overflow: 'scroll'}}>
-        <Header className="site-layout-background" style={{padding: 0, background: '#0877BB'}}>
-          {React.createElement(collapse ? MenuUnfoldOutlined : MenuFoldOutlined, {
-          className: 'trigger',
-            onClick: toggle,
-          })}
-        </Header>
         <Content
           className="site-layout-background"
           style={{

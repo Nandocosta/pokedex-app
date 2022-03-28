@@ -28,9 +28,8 @@ export default function Routes () {
     
     }
 
-    const login = (uid, email, password) => { 
-        const data = { uid, email }
-
+    const login = (uid, email, displayName, password) => { 
+        const data = { uid, email, displayName }
         localStorage.setItem( "Usuario", JSON.stringify(data));
 
         setUser({ email, password })
@@ -48,12 +47,12 @@ export default function Routes () {
                     <Route exact path='/login' component={Logar}/>
                     <Route exact path='/cadastro' component={Cadastrar}/>
                     <Route exact path='/' component={Home}/>
-                    <Route exact path='/PokerLikes' component={PokerLikes}/>
                     <Route exact path='/MinhaConta' component={MinhaConta}/>
-                    <PrivateRouter
-                        path="/"
-                    >
-                        <Home/>
+                    <PrivateRouter path="/PokerLikes" >
+                        <PokerLikes/>
+                    </PrivateRouter>
+                    <PrivateRouter path='/MinhaConta' >
+                        <MinhaConta/>
                     </PrivateRouter>
                     <Route path='/unauthenticated' component={Unauthenticated}/>
                 </Switch>

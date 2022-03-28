@@ -7,6 +7,7 @@ import Login from '../../components/login/Login';
 
 import './index.css'
 import Home from '../home';
+import { Redirect  } from 'react-router-dom';
 
 const Logar = () => {
 
@@ -20,7 +21,9 @@ const Logar = () => {
         
         firebase.signInWithEmailAndPassword( auth, email, password ).then( data => {
             const { user } = data
-            login( user.uid, user.email , password )
+            login( user.uid, user.email , user.displayName, password )
+            window.location.assign('/')
+            
         })
     }
 
@@ -30,7 +33,6 @@ const Logar = () => {
 
     return (
         <div>
-            authenticated ? <Home/> : <Logar/>
             <Login onFinish={onFinish} onFinishFailed={onFinishFailed}/>
         </div>
     );

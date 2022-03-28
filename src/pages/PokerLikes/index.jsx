@@ -7,12 +7,12 @@ import axios from "axios";
 import ListCardPokemon from "../../components/ListCardPokemon";
 
 const PokeLikes = () => {
-        const [pokemon, setPokemon] = useState('?offset=0&limit=6')
+        const [pokemon, setPokemon] = useState('')
         const [pokemonData, setPokemonData] = useState([])
 
     useEffect(() => {
         getPokemon()
-    }, [])
+    }, [pokemon])
     
     const getPokemon = async (offset) => {
     const toArray = []
@@ -20,7 +20,7 @@ const PokeLikes = () => {
         const offsetDefault = "?offset=0&limit=6"
         const queryParam = offset || ""
         console.log(queryParam)
-        const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1100${queryParam}`
+        const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800${pokemon}`
         const res = await axios.get(url);
         toArray.push(res.data)
         setPokemonData(toArray)
