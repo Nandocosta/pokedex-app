@@ -4,7 +4,8 @@ import {
     Input, 
     Button,
     Row,
-    Col
+    Col,
+    message
 } from 'antd';
 
 
@@ -13,10 +14,9 @@ import PainelPoker from "../../components/PainelPoker";
 import './index.css'
 import firebase from "../../firebaseConfig";
 
-const MinhaConta = ({onFinish, onFinishFailed}) => {
+const MinhaConta = () => {
 
     const [user, setUser] = useState()
-
     const [fields, setFields] = useState([])
 
     useEffect( () => {
@@ -24,32 +24,46 @@ const MinhaConta = ({onFinish, onFinishFailed}) => {
         setTimeout(()=>{
             const currentUser =  firebase.auth.currentUser
             setUser(currentUser)
-        }, 1000)
-        
-
-        // .getUser(userStorage.uid)
-        // .then((userRecord) => {
-        //     console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-        //   })
-        //   .catch((error) => {
-        //     console.log('Error fetching user data:', error);
-        //   });
+        }, 10)
     }, [])
 
     useEffect(()=> {
         const nwFields = [
             {
-              name: ['nome'],
-              value: user?.displayName,
+                name: 'nome',
+                value: user?.displayName,
             },
             {
-              name: ['email'],
-              value: user?.email,
+                name: 'email',
+                value: user?.email,
+            },
+            {
+                name: 'password',
+                value: user?.password,
             },
         ]
         setFields(nwFields)
     }, [user])
-
+   
+    const onFinish = (values) => {
+        // console.log('Success:', values);
+        const auth = firebase.getAuth()
+        const {email, password, nome, confimarPassword} = values
+        
+        if(password != confimarPassword) {
+            
+                message.error('Senhas diferentes');
+        } else {
+            firebase.updateProfile(user, {
+                displayName: nome,
+            }).then(console.log)
+            firebase.updateEmail()
+            
+            firebase.updatePassword(user,{ newPassword:password}).then(console.log)
+            
+            // console.log(values, user)
+        }
+    }
     const style = { background: '#0092ff', padding: '8px 0' };
 
     const CustomizedForm = ({ onChange, fields }) => (
@@ -59,11 +73,8 @@ const MinhaConta = ({onFinish, onFinishFailed}) => {
                 remember: true,
             }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            // onFinishFailed={onFinishFailed}
             fields={fields}
-            onFieldsChange={(_, allFields) => {
-                onChange(allFields);
-            }}
             >
         
             <Row gutter={ 18 }>
@@ -146,9 +157,6 @@ const MinhaConta = ({onFinish, onFinishFailed}) => {
             <div className='formMinhaConta'>
                 <CustomizedForm
                     fields={fields}
-                    onChange={(newFields) => {
-                    setFields(newFields);
-                    }}
                 />
             </div>
         </PainelPoker>

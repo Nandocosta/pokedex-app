@@ -6,8 +6,7 @@ import { AuthContext } from '../../contexts/auth';
 import Login from '../../components/login/Login';
 
 import './index.css'
-import Home from '../home';
-import { Redirect  } from 'react-router-dom';
+
 
 const Logar = () => {
 
