@@ -20,9 +20,10 @@ const PokeLikes = () => {
         const offsetDefault = "?offset=0&limit=6"
         const queryParam = offset || ""
         console.log(queryParam)
-        const url = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800${pokemon}`
+        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon ||'offset=0&limit=800'}`
         const res = await axios.get(url);
-        toArray.push(res.data)
+        const results = res?.data?.results || res?.data?.name || []
+        toArray.push(results)
         setPokemonData(toArray)
     }catch(e){
         // console.log(e);

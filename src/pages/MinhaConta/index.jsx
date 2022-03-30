@@ -37,16 +37,11 @@ const MinhaConta = () => {
                 name: 'email',
                 value: user?.email,
             },
-            {
-                name: 'password',
-                value: user?.password,
-            },
         ]
         setFields(nwFields)
     }, [user])
    
-    const onFinish = (values) => {
-        // console.log('Success:', values);
+    const onFinish = async (values) => {
         const auth = firebase.getAuth()
         const {email, password, nome, confimarPassword} = values
         
@@ -54,14 +49,18 @@ const MinhaConta = () => {
             
                 message.error('Senhas diferentes');
         } else {
+            // const result = await firebase.signInWithPopup(auth, firebase.EmailAuthProvider);
+            // const credential = firebase.reauthenticateWithPopup(result.user, firebase.EmailAuthProvider);
             firebase.updateProfile(user, {
                 displayName: nome,
             }).then(console.log)
-            firebase.updateEmail()
+            firebase.updateEmail(user, email).then()
+            .catch(console.log)
+
+            localStorage.setItem('Usuario', JSON.stringify({uid: user.uid, email: user.email, displayName: user.displayName}))
             
-            firebase.updatePassword(user,{ newPassword:password}).then(console.log)
-            
-            // console.log(values, user)
+            firebase.updatePassword(user, password).then(console.log).catch(console.log)
+           
         }
     }
     const style = { background: '#0092ff', padding: '8px 0' };

@@ -7,7 +7,10 @@ import {
   updateProfile,
   updateEmail,
   updatePassword,
-  updateCurrentUser
+  updateCurrentUser,
+  reauthenticateWithPopup,
+  signInWithPopup,
+  EmailAuthProvider
 } from 'firebase/auth'
 
 
@@ -30,6 +33,9 @@ const firebaseConfig = {
     updateEmail,
     updatePassword,
     updateCurrentUser,
+    reauthenticateWithPopup,
+    signInWithPopup,
+    EmailAuthProvider,
     app,
     getAuth,
     auth

@@ -10,10 +10,16 @@ import './index.css'
 const CardPokemon = ( {pokemon, favorites}) => {
 
     const [pokemonData, setPokemonData] = useState()
+    console.log(pokemon)
     const [isFavority, setisFavority]  = useState()
     
     useEffect(() => {
-        getPokemon(pokemon.name)
+        // console.log(pokemon)
+        getPokemon(pokemon)
+    },[])
+
+    useEffect(() => {
+        getPokemon(pokemon)
     },[isFavority])
 
     const getPokemon = async (poke) => {
@@ -29,16 +35,17 @@ const CardPokemon = ( {pokemon, favorites}) => {
       }
 
     const favoritar = (pokemon) => {
-        addPokemon(pokemon.id)
+        addPokemon(pokemon?.id)
         setisFavority(true)
     }
     const desfavoritar = (pokemon) => {
-        removePokemon(pokemon.id)
+        removePokemon(pokemon?.id)
         setisFavority(false)
     }
 
     if (favorites){
         if( getPokemonsFavorites(pokemonData?.id) ){
+            
             return (
                 <div className='listCard'>
                     <Card size="small" 

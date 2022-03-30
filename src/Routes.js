@@ -47,7 +47,6 @@ export default function Routes () {
                     <Route exact path='/login' component={Logar}/>
                     <Route exact path='/cadastro' component={Cadastrar}/>
                     <Route exact path='/' component={Home}/>
-                    <Route exact path='/MinhaConta' component={MinhaConta}/>
                     <PrivateRouter path="/PokerLikes" >
                         <PokerLikes/>
                     </PrivateRouter>
