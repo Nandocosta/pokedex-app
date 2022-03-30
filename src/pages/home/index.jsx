@@ -17,8 +17,8 @@ const Home = () => {
     const toArray = []
     try{
         const offsetDefault = "?offset=0&limit=6"
-        const queryParam = offset || ""
-        const url = `https://pokeapi.co/api/v2/pokemon/${pokemon||'?offset=0&limit=20'}`
+        const queryParam = "?offset=2&limit=6" || pokemon  || offsetDefault
+        const url = `https://pokeapi.co/api/v2/pokemon/${queryParam}`
         const res = await axios.get(url);
         const results = res?.data?.results || res?.data?.name || []
         toArray.push(results)

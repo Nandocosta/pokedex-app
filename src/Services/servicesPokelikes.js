@@ -28,6 +28,7 @@ export const removePokemon = (pokemon) => {
 }
 
 export const getPokemonsFavorites = (pokemon) => {
+    console.log({gtPokemonFavorito: pokemon})
     const dados = localStorage.getItem("favoritos")
     const pokemonData = dados ? JSON.parse(dados) : []
     return pokemon ? pokemonData.find(e => e == pokemon) : pokemonData

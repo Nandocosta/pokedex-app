@@ -35,11 +35,11 @@ const CardPokemon = ( {pokemon, favorites}) => {
       }
 
     const favoritar = (pokemon) => {
-        addPokemon(pokemon?.id)
+        addPokemon(pokemon.id)
         setisFavority(true)
     }
     const desfavoritar = (pokemon) => {
-        removePokemon(pokemon?.id)
+        removePokemon(pokemon.id)
         setisFavority(false)
     }
 
