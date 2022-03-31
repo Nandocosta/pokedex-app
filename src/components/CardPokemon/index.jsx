@@ -1,20 +1,18 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
 import { Card} from 'antd';
-import { addPokemon, getPokemonsFavorites,removePokemon } from '../../Services/servicesPokelikes'
+import { addPokemon, getPokemonsFavorites, removePokemon } from '../../Services/servicesPokelikes'
 import { HeartOutlined,HeartFilled } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 
 import './index.css'
 
-const CardPokemon = ( {pokemon, favorites}) => {
+const CardPokemon = ( {pokemon, favorites = false}) => {
 
     const [pokemonData, setPokemonData] = useState()
-    console.log(pokemon)
     const [isFavority, setisFavority]  = useState()
     
     useEffect(() => {
-        // console.log(pokemon)
         getPokemon(pokemon)
     },[])
 
@@ -28,7 +26,7 @@ const CardPokemon = ( {pokemon, favorites}) => {
             const res = await axios.get(url);
             const { data } = res
             setPokemonData(data)
-            
+
         }catch(e){
             console.log(e)
         }
@@ -43,8 +41,8 @@ const CardPokemon = ( {pokemon, favorites}) => {
         setisFavority(false)
     }
 
-    if (favorites){
-        if( getPokemonsFavorites(pokemonData?.id) ){
+    if (favorites && pokemonData){
+        if(getPokemonsFavorites(pokemonData?.id) ){
             
             return (
                 <div className='listCard'>
@@ -81,7 +79,7 @@ const CardPokemon = ( {pokemon, favorites}) => {
             )
         }else {return null}
        
-    }else{   
+    }else if(pokemonData){   
         return (
             <div className='listCard'>
                 <Card size="small" 
@@ -115,7 +113,7 @@ const CardPokemon = ( {pokemon, favorites}) => {
                 </Card>
             </div>
         )
-    }
+    } else {return null}
 }
 
 export default CardPokemon;

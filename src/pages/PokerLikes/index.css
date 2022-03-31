@@ -1,8 +1,8 @@
-.layout-home{
+.layout-home-like{
     width: 100%;
     margin:0 80px auto;
 }
-.box-pagination{
+.box-pagination-likes{
     margin: 40px 100px auto;
     justify-content: center;
 }
