@@ -24,7 +24,9 @@ const Page = () => {
             ApiServer.post('users/create',{nome, email, password},{
                 'Content-Type': 'application/json'
             })
-            .then(e =>{console.log("Usuario cadastrado")})
+            .then(() =>{
+                window.location = "/login"
+            })
             .catch(e =>{console.log("falha no Cadastro")})
             // firebase.createUserWithEmailAndPassword(auth, email, password).then(data => {
             //     // console.log(data.user.auth.currentUser)
