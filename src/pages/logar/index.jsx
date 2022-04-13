@@ -1,29 +1,26 @@
-import React, { useState, useContext} from 'react';
-import firebase from '../../firebaseConfig';
-
+import React, { useContext} from 'react';
 import { AuthContext } from '../../contexts/auth';
 
 import Login from '../../components/login/Login';
+import ApiServer from '../../Services/ApiServer';
 
-import './index.css'
+// import './index.css'
 
 
 const Logar = () => {
 
-    const { authenticated, login } = useContext (AuthContext);
-
+    const {login } = useContext (AuthContext);
 
     const  onFinish = (values) => {
-        // console.log('Success:', values);
-        const auth = firebase.getAuth()
         const { email, password } = values
-        
-        firebase.signInWithEmailAndPassword( auth, email, password ).then( data => {
-            const { user } = data
-            login( user.uid, user.email , user.displayName, password )
-            window.location.assign('/')
-            
+
+        ApiServer.post("users/logar", {email, password} ).then( response => {
+            const {data} = response
+            console.log(data?.data)
+            login(data?.data)
+            window.location.assign('/')    
         })
+       
     }
 
     const onFinishFailed = (errorInfo) => {

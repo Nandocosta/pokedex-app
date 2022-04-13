@@ -13,6 +13,7 @@ import PainelPoker from "../../components/PainelPoker";
 
 import './index.css'
 import firebase from "../../firebaseConfig";
+import ApiServer from "../../Services/ApiServer";
 
 const MinhaConta = () => {
 
@@ -49,18 +50,18 @@ const MinhaConta = () => {
             
                 message.error('Senhas diferentes');
         } else {
-            // const result = await firebase.signInWithPopup(auth, firebase.EmailAuthProvider);
-            // const credential = firebase.reauthenticateWithPopup(result.user, firebase.EmailAuthProvider);
-            firebase.updateProfile(user, {
-                displayName: nome,
-            }).then(console.log)
-            firebase.updateEmail(user, email).then()
-            .catch(console.log)
+            ApiServer.put('users/edit',{nome, email, password},{
+                'Content-Type': 'application/json'
+            })
+            // firebase.updateProfile(user, {
+            //     displayName: nome,
+            // }).then(console.log)
+            // firebase.updateEmail(user, email).then()
+            // .catch(console.log)
 
-            localStorage.setItem('Usuario', JSON.stringify({uid: user.uid, email: user.email, displayName: user.displayName}))
+            // localStorage.setItem('Usuario', JSON.stringify({uid: user.uid, email: user.email, displayName: user.displayName}))
             
-            firebase.updatePassword(user, password).then(console.log).catch(console.log)
-           
+            // firebase.updatePassword(user, password).then(console.log).catch(console.log)
         }
     }
     const style = { background: '#0092ff', padding: '8px 0' };

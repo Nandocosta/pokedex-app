@@ -18,28 +18,21 @@ import MinhaConta from './pages/MinhaConta';
 export default function Routes () {
 
     const [user, setUser] = useState('')
-    const [value, setValue] = useState('');
 
     const isLoged = () => {
         const userStorage = JSON.parse(localStorage.getItem("Usuario"))
-
         return !!userStorage
-
-    
     }
 
-    const login = (uid, email, displayName, password) => { 
-        const data = { uid, email, displayName }
-        localStorage.setItem( "Usuario", JSON.stringify(data));
-
-        setUser({ email, password })
+    const login = (data) => { 
+        localStorage.setItem( "Usuario", JSON.stringify(data))
+        setUser(data)
     }
 
     const logout = () => {
         console.log('logout')
     }
     
-
     return(
         <Router>
             <AuthContext.Provider value={{authenticated: isLoged(), user, login, logout}}>

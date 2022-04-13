@@ -2,6 +2,8 @@
 // Ao Salvar transformar em string
 // Ao Buscar transformar em JSON 
 
+import ApiServer from "./ApiServer"
+
 export const addPokemon = (pokemon) => {
     //pegar a lista de pokemons do localstorage
     //verificar se já está na lista de favoritos
@@ -11,17 +13,27 @@ export const addPokemon = (pokemon) => {
         dados.push(pokemon)
         const newDados = JSON.stringify(dados)
         localStorage.setItem("favoritos", newDados)
+        const user = getUser()
+        ApiServer.post("pokelikes/create",{pokemon_id:pokemon, user_id: user.id},{
+            'Content-Type': 'application/json'
+        }) 
     }
-    
-
-    
 }
+function getUser(){
+    return JSON.parse(localStorage.getItem("Usuario"))
+
+}
+
 export const removePokemon = (pokemon) => {
         const dados = getPokemonsFavorites()
         if(dados.some(e => e === pokemon)){
             const newDados = [...dados.filter((e) => e != pokemon)]
             // console.log(newDados)
             localStorage.setItem("favoritos", JSON.stringify(newDados))
+            const user = getUser()
+            ApiServer.delete(`pokelikes/delete?pokemon_id=${pokemon}&&user_id=${user.id}`,{
+                'Content-Type': 'application/json'
+            }) 
         }
     
     // const newDados = JSON.
