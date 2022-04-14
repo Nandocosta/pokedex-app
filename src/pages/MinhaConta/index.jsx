@@ -8,11 +8,9 @@ import {
     message
 } from 'antd';
 
-
 import PainelPoker from "../../components/PainelPoker";
 
 import './index.css'
-import firebase from "../../firebaseConfig";
 import ApiServer from "../../Services/ApiServer";
 
 const MinhaConta = () => {
@@ -22,17 +20,14 @@ const MinhaConta = () => {
 
     useEffect( () => {
         const userStorage = JSON.parse(localStorage.getItem("Usuario"))
-        setTimeout(()=>{
-            const currentUser =  firebase.auth.currentUser
-            setUser(currentUser)
-        }, 10)
+        setUser(userStorage)
     }, [])
 
     useEffect(()=> {
         const nwFields = [
             {
                 name: 'nome',
-                value: user?.displayName,
+                value: user?.nome,
             },
             {
                 name: 'email',
@@ -41,27 +36,18 @@ const MinhaConta = () => {
         ]
         setFields(nwFields)
     }, [user])
-   
+    
     const onFinish = async (values) => {
-        const auth = firebase.getAuth()
+        
         const {email, password, nome, confimarPassword} = values
         
         if(password != confimarPassword) {
             
                 message.error('Senhas diferentes');
         } else {
-            ApiServer.put('users/edit',{nome, email, password},{
+            ApiServer.put(`users/edit/${user.id}`,{...values},{
                 'Content-Type': 'application/json'
             })
-            // firebase.updateProfile(user, {
-            //     displayName: nome,
-            // }).then(console.log)
-            // firebase.updateEmail(user, email).then()
-            // .catch(console.log)
-
-            // localStorage.setItem('Usuario', JSON.stringify({uid: user.uid, email: user.email, displayName: user.displayName}))
-            
-            // firebase.updatePassword(user, password).then(console.log).catch(console.log)
         }
     }
     const style = { background: '#0092ff', padding: '8px 0' };
